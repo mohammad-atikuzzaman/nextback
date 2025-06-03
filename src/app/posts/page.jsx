@@ -1,14 +1,27 @@
+import PostCard from "@/components/PostCard";
+import getPosts from "@/lib/fetchPostsApi";
+
 const page = async () => {
-  const result = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const posts = await result.json();
+  const posts = await getPosts();
+
   return (
-    <main className="grid grid-cols-3 gap-4 p-4">
-      {posts?.map((post) => (
-        <article className="shadow p-3 rounded-md hover:shadow-lg space-y-2 " key={post.id}>
-          <h3 className="font-semibold text-sm uppercase  ">{post?.title}</h3>
-          <p className="text-sm">{post?.body}</p>
-        </article>
-      ))}
+    <main className="min-h-screen bg-gradient-to-br from-white to-indigo-200 px-4 py-10">
+      {/* Page heading */}
+      <section className="text-center mb-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800">
+          Explore Insightful Posts
+        </h1>
+        <p className="text-gray-600 mt-2 text-sm md:text-base">
+          Discover articles tailored for learning, curiosity, and innovation.
+        </p>
+      </section>
+
+      {/* Card grid */}
+      <section className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts?.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </section>
     </main>
   );
 };
