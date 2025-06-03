@@ -54,7 +54,8 @@ const AdminNav = () => {
 
   // Dynamic classes for the main navigation container
   const navContainerClasses = useMemo(() => {
-    let baseClasses = "top-0 left-0 min-h-screen z-50 bg-blue-800 text-white py-4 transition-all duration-300";
+    let baseClasses =
+      "top-0 left-0 min-h-screen z-50 bg-blue-800 text-white py-4 transition-all duration-300";
     let positionClass = "sticky"; // Default to sticky
     let widthClass;
 
