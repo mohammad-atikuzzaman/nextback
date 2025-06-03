@@ -1,5 +1,5 @@
 import Comments from "@/components/Comments";
-import { getSpecificPostById } from "@/lib/fetchPostsApi";
+import { getSpecificPostById } from "@/utils/fetchPostsApi";
 import { ArrowLeft, User2, Hash } from "lucide-react";
 import Link from "next/link";
 import React from "react";

@@ -1,4 +1,4 @@
-import getCommentsOfPost from "@/lib/fetchCommentsApi";
+import getCommentsOfPost from "@/utils/fetchCommentsApi";
 import React from "react";
 import Comment from "./Comment";
 
