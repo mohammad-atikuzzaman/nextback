@@ -1,5 +1,6 @@
 import AdminNav from "@/components/AdminNav";
 import { authOptions } from "@/lib/authOptions";
+import SessionProviderWrapper from "@/utils/SessionWraper";
 import { Home } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
@@ -11,7 +12,10 @@ const AdminLayout = async ({ children }) => {
     return (
       <div className="w-full min-h-screen flex items-center justify-center text-center  bg-gradient-to-tr from-white to bg-indigo-200">
         <div>
-          <Link className="flex justify-center items-center text-indigo-500 gap-2" href="/">
+          <Link
+            className="flex justify-center items-center text-indigo-500 gap-2"
+            href="/"
+          >
             <Home />
             <span className=" text-xl">Back To home</span>
           </Link>
@@ -21,10 +25,12 @@ const AdminLayout = async ({ children }) => {
     );
   }
   return (
-    <main className="flex min-h-screen">
-      <AdminNav />
-      <section className="flex-1 bg-gray-100 p-4">{children}</section>
-    </main>
+    <SessionProviderWrapper>
+      <main className="flex min-h-screen">
+        <AdminNav />
+        <section className="flex-1 bg-gradient-to-tr from-white to-indigo-200 p-2 overflow-auto">{children}</section>
+      </main>
+    </SessionProviderWrapper>
   );
 };
 

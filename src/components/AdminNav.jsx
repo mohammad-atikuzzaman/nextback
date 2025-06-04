@@ -2,14 +2,14 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Home, Shield, Users, LogIn } from "lucide-react";
+import { Menu, X, Home, Shield, Users, LogIn, Book } from "lucide-react";
 
 // Define menu items outside the component to prevent re-creation on render
 const menuItems = [
   { path: "/", label: "Home", icon: Home },
   { path: "/dashboard", label: "Dashboard", icon: Shield },
   { path: "/dashboard/users", label: "Users", icon: Users },
-  { path: "/auth", label: "Login", icon: LogIn },
+  { path: "/dashboard/add-post", label: "Add Post", icon: Book },
 ];
 
 const MOBILE_BREAKPOINT = 768;
