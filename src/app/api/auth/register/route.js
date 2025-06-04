@@ -2,9 +2,9 @@ import clientPromise from "@/lib/mongodb";
 import { hash } from "bcryptjs";
 
 export async function POST(req) {
-  const { name, email, password } = await req.json();
+  const { name, email, password, image } = await req.json();
 
-  console.log(name, email, password, "from server auth")
+  console.log(name, email, password, image,"from server auth")
 
   if (!email || !password || !name) {
     return Response.json({ message: "All fields required" }, { status: 400 });
@@ -23,6 +23,7 @@ export async function POST(req) {
     await users.insertOne({
       name,
       email,
+      image,
       password: hashedPassword,
       role: "user",
       createdAt: new Date(),

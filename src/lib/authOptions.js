@@ -26,6 +26,7 @@ export const authOptions = {
           id: user._id,
           email: user.email,
           name: user.name,
+          image: user.image,
           role: user.role || "user",
         };
       },
@@ -44,6 +45,7 @@ export const authOptions = {
           await users.insertOne({
             email: user.email,
             name: user.name,
+            image: user.image,
             role: "user",
             createdAt: new Date(),
           });
@@ -54,12 +56,14 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role || "user";
+        token.image = user.image;
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
         session.user.role = token.role;
+        session.user.image = token.image;
       }
       return session;
     },

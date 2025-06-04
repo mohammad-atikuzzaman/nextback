@@ -10,10 +10,10 @@ const RegisterPage = () => {
     name: "",
     email: "",
     password: "",
-    // photo: "",
+    image: "",
   });
   const [error, setError] = useState("");
-  console.log(loading);
+  // console.log(loading);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,8 +48,7 @@ const RegisterPage = () => {
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           aria-label="Name"
         />
-        {/* <div className=" bg-indigo-500 hover:bg-indigo-600 pb-2 rounded-md flex flex-col-reverse">
-        
+        <div className=" bg-indigo-500 hover:bg-indigo-600 pb-2 rounded-md flex flex-col-reverse">
           <input
             type="file"
             accept="image/*"
@@ -57,9 +56,9 @@ const RegisterPage = () => {
             onChange={async (e) => {
               setLoading(true);
               try {
-                const image = await uploadImage(e.target.files[0]);
-                if (image) {
-                  setForm({ ...form, photo: image });
+                const photo = await uploadImage(e.target.files[0]);
+                if (photo) {
+                  setForm({ ...form, image: photo });
                 }
               } catch (err) {
                 setError(err);
@@ -70,7 +69,6 @@ const RegisterPage = () => {
             className=" text-sm text-gray-700 w-1/2 mx-auto cursor-pointer"
           />
 
-   
           <label
             htmlFor="photo"
             className="w-full p-2 rounded-md text-sm text-gray-100 flex items-center justify-center gap-2 transition-colors"
@@ -90,7 +88,7 @@ const RegisterPage = () => {
               />
             </svg>
           </label>
-        </div> */}
+        </div>
         <input
           type="email"
           placeholder="Email"
