@@ -1,6 +1,7 @@
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import SignOutBtn from "./SignOutBtn";
 
 export default async function User() {
   const session = await getServerSession(authOptions);
@@ -24,17 +25,16 @@ export default async function User() {
           className="rounded-full border"
         />
         <div>
-          <h1 className="text-xl font-semibold">
-            Welcome, {session.user.name}
-          </h1>
+          <h1 className="text-xl font-semibold">{session.user.name}</h1>
           <p className="text-sm text-gray-500">{session.user.email}</p>
         </div>
       </div>
-      <div className="pt-2 border-t">
+      <div className="pt-2 border-t flex justify-between items-center">
         <p className="text-sm">
           <span className="font-medium">Role:</span>{" "}
           {session.user.role || "user"}
         </p>
+        <SignOutBtn />
       </div>
     </div>
   );
