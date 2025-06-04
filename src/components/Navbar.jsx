@@ -10,7 +10,7 @@ const Navbar = () => {
       { path: "/", show: "Home" },
       { path: "/posts", show: "Posts" },
       { path: "/about", show: "About" },
-      { path: "/admin", show: "Admin" },
+      { path: "/dashboard", show: "Dashboard" },
       { path: "/auth", show: "Login" },
     ],
     []
@@ -19,7 +19,7 @@ const Navbar = () => {
   const path = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  if (path.startsWith("/admin") || path.startsWith("/auth")) return null;
+  if (path.startsWith("/dashboard") || path.startsWith("/auth")) return null;
 
   const linkClass = (linkPath) =>
     `block px-3 py-2 rounded-md transition-colors duration-200 ${
@@ -29,7 +29,7 @@ const Navbar = () => {
     }`;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-md">
+    <nav className="sticky top-0 z-50 bg-gradient-to-br from-indigo-100 bg-indigo-50 shadow-md">
       <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
         <h1 className="text-3xl font-bold text-indigo-600 tracking-wide select-none cursor-default">
           NextPrac

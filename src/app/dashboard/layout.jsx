@@ -9,13 +9,13 @@ const AdminLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
   if (session.user.role !== "admin") {
     return (
-      <div className="w-full min-h-screen flex items-center justify-center text-center  bg-gradient-to-tr from-white to bg-indigo-300">
+      <div className="w-full min-h-screen flex items-center justify-center text-center  bg-gradient-to-tr from-white to bg-indigo-200">
         <div>
-          <Link className="flex justify-center text-indigo-500 gap-2" href="/">
+          <Link className="flex justify-center items-center text-indigo-500 gap-2" href="/">
             <Home />
-            <span className=" font-semibold">Back To home</span> 
+            <span className=" text-xl">Back To home</span>
           </Link>
-          <p className="text-2xl text-gray-700">Only Admin Access Here</p>
+          <p className="text-2xl text-gray-700 mt-2">Only Admin Access Here</p>
         </div>
       </div>
     );

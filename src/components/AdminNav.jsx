@@ -7,8 +7,8 @@ import { Menu, X, Home, Shield, Users, LogIn } from "lucide-react";
 // Define menu items outside the component to prevent re-creation on render
 const menuItems = [
   { path: "/", label: "Home", icon: Home },
-  { path: "/admin", label: "Admin", icon: Shield },
-  { path: "/admin/users", label: "Users", icon: Users },
+  { path: "/dashboard", label: "Dashboard", icon: Shield },
+  { path: "/dashboard/users", label: "Users", icon: Users },
   { path: "/auth", label: "Login", icon: LogIn },
 ];
 

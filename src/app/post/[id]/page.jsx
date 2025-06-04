@@ -9,7 +9,7 @@ const Page = async ({ params }) => {
   const post = await getSpecificPostById(id);
 
   return (
-    <main className="min-h-screen bg-gradient-to-tr from-indigo-100 to-white py-10 px-4 sm:px-6 md:px-8">
+    <main className="min-h-screen bg-gradient-to-tr from-white to-indigo-200 py-10 px-4 sm:px-6 md:px-8">
       <article className="max-w-4xl mx-auto">
         <Link
           href="/posts"
