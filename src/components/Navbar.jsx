@@ -8,9 +8,9 @@ const Navbar = () => {
   const menu = useMemo(
     () => [
       { path: "/", show: "Home" },
+      { path: "/posts", show: "Posts" },
       { path: "/about", show: "About" },
       { path: "/admin", show: "Admin" },
-      { path: "/posts", show: "Posts" },
       { path: "/auth", show: "Login" },
     ],
     []
