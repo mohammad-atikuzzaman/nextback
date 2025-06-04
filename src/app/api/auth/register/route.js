@@ -1,36 +1,35 @@
-import { hash } from "bcryptjs";
 import clientPromise from "@/lib/mongodb";
+import { hash } from "bcryptjs";
 
 export async function POST(req) {
   const { name, email, password } = await req.json();
 
-  if (!name || !email || !password) {
-    return Response.json({ message: "All fields are required" }, { status: 400 });
+  console.log(name, email, password, "from server auth")
+
+  if (!email || !password || !name) {
+    return Response.json({ message: "All fields required" }, { status: 400 });
   }
 
   try {
     const client = await clientPromise;
-    const users = client.db().collection("users");
+    const db = client.db();
+    const users = db.collection("users");
 
-    const existingUser = await users.findOne({ email });
-    if (existingUser) {
-      return Response.json({ message: "User already exists" }, { status: 409 });
-    }
+    const existing = await users.findOne({ email });
+    if (existing) return Response.json({ message: "User already exists" }, { status: 409 });
 
     const hashedPassword = await hash(password, 10);
 
-    const newUser = {
+    await users.insertOne({
       name,
       email,
       password: hashedPassword,
       role: "user",
       createdAt: new Date(),
-    };
+    });
 
-    await users.insertOne(newUser);
-
-    return Response.json({ message: "Registration successful" }, { status: 201 });
-  } catch (err) {
-    return Response.json({ message: "Something went wrong" }, { status: 500 });
+    return Response.json({ message: "Registered successfully" }, { status: 201 });
+  } catch {
+    return Response.json({ message: "Server error" }, { status: 500 });
   }
 }

@@ -24,7 +24,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="max-w-sm mx-auto p-6 bg-white rounded-lg shadow-md flex flex-col gap-6">
+    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md flex flex-col gap-6">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="email"
@@ -71,15 +71,6 @@ const LoginPage = () => {
         Sign in with Google
       </button>
 
-      <p className="text-center text-sm text-gray-600">
-        Don’t have an account?{" "}
-        <a
-          href="/register"
-          className="text-blue-600 underline hover:text-blue-700"
-        >
-          Register
-        </a>
-      </p>
     </div>
   );
 };

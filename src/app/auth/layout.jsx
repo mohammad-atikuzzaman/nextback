@@ -1,16 +1,35 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
-const layout = ({children}) => {
-    return (
-        <div className='flex flex-col items-center justify-center w-full min-h-screen'>
-            <div className=' bg-gray-300 space-x-4 p-2  '>
-                <Link href="/auth">Login</Link>
-                <Link href="auth/register">Register</Link>
-            </div>
-            {children}
-        </div>
-    );
+const Layout = ({ children }) => {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
+      {/* Navigation */}
+      <nav className="mb-6 bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-md flex gap-4 font-medium">
+        <Link
+          href="/"
+          className="bg-white text-indigo-600 px-3 py-1 rounded-md hover:bg-gray-300 transition"
+        >
+          Home
+        </Link>
+        <Link
+          href="/auth"
+          className="bg-white text-indigo-600 px-3 py-1 rounded-md hover:bg-gray-300 transition"
+        >
+          Login
+        </Link>
+        <Link
+          href="/auth/register"
+          className="bg-white text-indigo-600 px-3 py-1 rounded-md hover:bg-gray-300 transition"
+        >
+          Register
+        </Link>
+      </nav>
+
+      {/* Page Content */}
+      <main className="w-full max-w-md">{children}</main>
+    </div>
+  );
 };
 
-export default layout;
+export default Layout;

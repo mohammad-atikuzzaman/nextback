@@ -1,9 +1,11 @@
-import Image from "next/image";
+import SignOutBtn from "@/components/SignOutBtn";
+import User from "@/components/User";
 
 export default function Home() {
   return (
     <main className="flex items-center justify-center min-h-screen">
-      <h2 className="text-4xl font semi bold">Home page</h2>
+      <User />
+      <SignOutBtn />
     </main>
   );
 }

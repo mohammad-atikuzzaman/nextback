@@ -60,7 +60,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <ul
         className={`
-          md:hidden fixed top-[64px] right-0 w-full bg-white/90 backdrop-blur-sm shadow-inner flex flex-col space-y-2 px-5 py-4 border border-gray-200 min-h-screen
+          md:hidden fixed  top-[64px] right-0 w-full bg-white/90 backdrop-blur-sm shadow-inner flex flex-col space-y-2 px-5 py-4 border border-gray-200 min-h-screen
           transform transition-transform duration-300 ease-in-out
           ${mobileOpen ? "translate-y-0 opacity-100 pointer-events-auto" : "-translate-x-full opacity-0 pointer-events-none"}
         `}
