@@ -5,7 +5,7 @@ import React from "react";
 const AboutPage = async () => {
   const cookieStore = await cookies();
 
-  const res = await fetch("https://nextback-eta.vercel.app/api/posts", {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
     headers: {
       Cookie: cookieStore.toString(),
     },
