@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 
 const Layout = ({ children }) => {
   return (
@@ -27,7 +27,9 @@ const Layout = ({ children }) => {
       </nav>
 
       {/* Page Content */}
-      <main className="w-full max-w-md">{children}</main>
+      <Suspense fallback={<div>Loading...</div>}>
+        <main className="w-full max-w-md">{children}</main>
+      </Suspense>
     </div>
   );
 };

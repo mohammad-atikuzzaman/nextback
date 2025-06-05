@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import SignOutBtn from "./SignOutBtn";
 
-const ProfileImage = ({session}) => {
+const ProfileImage = ({ session }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   if (session?.status !== "authenticated") {
@@ -19,6 +19,7 @@ const ProfileImage = ({session}) => {
         width={30}
         height={30}
         onClick={() => setShowProfileMenu(!showProfileMenu)}
+        style={{ width: "30px", height: "30px" }}
         className="rounded-full"
       />
       {showProfileMenu && (
@@ -43,7 +44,7 @@ const ProfileImage = ({session}) => {
                 Profile
               </Link>
             </li>
-            <SignOutBtn/>
+            <SignOutBtn />
           </ul>
         </div>
       )}

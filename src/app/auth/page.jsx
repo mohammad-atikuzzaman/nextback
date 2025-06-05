@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // clear previous error
+    setError("");
 
     const res = await signIn("credentials", {
       email: form.email,
@@ -21,7 +21,6 @@ const LoginPage = () => {
     if (res.ok) {
       router.push("/");
     } else {
-      // Show the error message from NextAuth if exists
       setError(res.error || "Login failed");
     }
   };
