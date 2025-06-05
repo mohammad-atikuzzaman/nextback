@@ -1,6 +1,6 @@
 import AdminNav from "@/components/AdminNav";
 import { authOptions } from "@/lib/authOptions";
-import SessionProviderWrapper from "@/utils/SessionWraper";
+import SessionProviderWrapper from "@/utils/SessionProviderWrapper";
 import { Home } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";

@@ -3,15 +3,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useMemo } from "react";
 import { Menu, X } from "lucide-react";
+import ProfileImage from "./ProfileImage";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const session = useSession();
   const menu = useMemo(
     () => [
       { path: "/", show: "Home" },
       { path: "/posts", show: "Posts" },
       { path: "/about", show: "About" },
       { path: "/dashboard", show: "Dashboard" },
-      { path: "/auth", show: "Login" },
     ],
     []
   );
@@ -36,7 +38,7 @@ const Navbar = () => {
         </h1>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 font-medium">
+        <ul className="hidden md:flex items-center space-x-8 font-medium">
           {menu.map(({ path: linkPath, show }) => (
             <li key={linkPath}>
               <Link href={linkPath} className={linkClass(linkPath)}>
@@ -44,6 +46,18 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          {session?.status === "authenticated" ? (
+            <ProfileImage session={session} />
+          ) : (
+            <li>
+              <Link
+                href="/auth"
+                className="bg-indigo-500 text-white px-3 py-2 rounded-md hover:bg-indigo-400 transition-all"
+              >
+                Login
+              </Link>
+            </li>
+          )}
         </ul>
 
         {/* Mobile Hamburger */}
