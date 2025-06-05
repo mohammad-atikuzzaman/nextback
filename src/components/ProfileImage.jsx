@@ -8,7 +8,6 @@ import SignOutBtn from "./SignOutBtn";
 const ProfileImage = ({session}) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-  console.log(session);
   if (session?.status !== "authenticated") {
     return <></>;
   }
