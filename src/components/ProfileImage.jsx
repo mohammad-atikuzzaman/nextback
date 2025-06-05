@@ -3,6 +3,7 @@ import { FileKey, Mail, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import SignOutBtn from "./SignOutBtn";
 
 const ProfileImage = ({session}) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -43,6 +44,7 @@ const ProfileImage = ({session}) => {
                 Profile
               </Link>
             </li>
+            <SignOutBtn/>
           </ul>
         </div>
       )}

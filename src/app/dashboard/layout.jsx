@@ -8,7 +8,7 @@ import React from "react";
 
 const AdminLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
-  if (session.user.role !== "admin") {
+  if (!session || session?.user?.role !== "admin") {
     return (
       <div className="w-full min-h-screen flex items-center justify-center text-center  bg-gradient-to-tr from-white to bg-indigo-200">
         <div>
