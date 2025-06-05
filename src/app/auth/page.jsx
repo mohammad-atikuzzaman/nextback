@@ -10,6 +10,8 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // clear previous error
+
     const res = await signIn("credentials", {
       email: form.email,
       password: form.password,
@@ -19,7 +21,8 @@ const LoginPage = () => {
     if (res.ok) {
       router.push("/");
     } else {
-      setError("Login failed");
+      // Show the error message from NextAuth if exists
+      setError(res.error || "Login failed");
     }
   };
 
@@ -67,10 +70,8 @@ const LoginPage = () => {
         className="w-full flex justify-center items-center gap-2 py-3 border border-gray-300 rounded-md hover:bg-gray-100 transition"
         aria-label="Sign in with Google"
       >
-        {/* Optional: add Google icon here */}
         Sign in with Google
       </button>
-
     </div>
   );
 };

@@ -1,3 +1,4 @@
+// lib/authOptions.js
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import clientPromise from "./mongodb";
@@ -17,10 +18,13 @@ export const authOptions = {
         const client = await clientPromise;
         const user = await client.db().collection("users").findOne({ email });
 
-        if (!user || !user.password)
-          throw new Error("Invalid email or password");
+        if (!user || !user.password) throw new Error("Invalid email or password");
         const isValid = await compare(password, user.password);
         if (!isValid) throw new Error("Invalid email or password");
+
+        if (!user.verified) {
+          throw new Error("Please verify your email before logging in");
+        }
 
         return {
           id: user._id,
@@ -34,7 +38,6 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      // Store Google user if not already stored
       if (account.provider === "google") {
         const client = await clientPromise;
         const db = client.db();
@@ -47,6 +50,7 @@ export const authOptions = {
             name: user.name,
             image: user.image,
             role: "user",
+            verified: true, // Auto-verify Google users
             createdAt: new Date(),
           });
         }
