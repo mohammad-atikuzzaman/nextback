@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import GoogleLoginButton from "@/components/GoogleLoginButton";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -64,13 +65,7 @@ const LoginPage = () => {
         <hr className="flex-grow border-gray-300" />
       </div>
 
-      <button
-        onClick={() => signIn("google", { callbackUrl: "/" })}
-        className="w-full flex justify-center items-center gap-2 py-3 border border-gray-300 rounded-md hover:bg-gray-100 transition"
-        aria-label="Sign in with Google"
-      >
-        Sign in with Google
-      </button>
+      <GoogleLoginButton />
     </div>
   );
 };
