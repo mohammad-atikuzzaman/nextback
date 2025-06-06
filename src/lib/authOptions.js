@@ -1,8 +1,8 @@
 // lib/authOptions.js
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import clientPromise from "./mongodb";
 import { compare } from "bcryptjs";
+import { getUserCollection } from "@/lib/dbCollections/getUserCollection";
 
 export const authOptions = {
   providers: [
@@ -15,10 +15,11 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials) {
         const { email, password } = credentials;
-        const client = await clientPromise;
-        const user = await client.db().collection("users").findOne({ email });
+        const users = await getUserCollection();
+        const user = await users.findOne({ email });
 
-        if (!user || !user.password) throw new Error("Invalid email or password");
+        if (!user || !user.password)
+          throw new Error("Invalid email or password");
         const isValid = await compare(password, user.password);
         if (!isValid) throw new Error("Invalid email or password");
 
@@ -39,10 +40,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account }) {
       if (account.provider === "google") {
-        const client = await clientPromise;
-        const db = client.db();
-        const users = db.collection("users");
-
+        const users = await getUserCollection();
         const existing = await users.findOne({ email: user.email });
         if (!existing) {
           await users.insertOne({
@@ -59,7 +57,9 @@ export const authOptions = {
     },
     async jwt({ token, user }) {
       if (user) {
-        token.role = user.role || "user";
+        const users = await getUserCollection();
+        const dbUser = await users.findOne({ email: token?.email });
+        token.role = dbUser.role || "user";
         token.image = user.image;
       }
       return token;
