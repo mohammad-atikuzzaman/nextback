@@ -5,21 +5,21 @@ import Link from "next/link";
 import React, { useState } from "react";
 import SignOutBtn from "./SignOutBtn";
 
-const ProfileImage = ({ session }) => {
+const ProfileImage = ({ session, mobileOpen }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   if (session?.status !== "authenticated") {
     return <></>;
   }
   return (
-    <div className="border-2 flex flex-col rounded-full border-indigo-500 p-0.5 relative">
+    <div className="border-2 flex flex-col items-center rounded-full border-indigo-500 p-0.5 relative">
       <Image
         src={session?.data?.user?.image}
         alt={session?.data?.user?.name}
         width={30}
         height={30}
         onClick={() => setShowProfileMenu(!showProfileMenu)}
-        style={{ width: "30px", height: "30px" }}
+        style={{ width: `${mobileOpen ? "50px": "30px"}`, height: `${mobileOpen ? "50px": "30px"}` }}
         className="rounded-full"
       />
       {showProfileMenu && (

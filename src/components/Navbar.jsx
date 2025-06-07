@@ -83,6 +83,18 @@ const Navbar = () => {
           }
         `}
       >
+        {session?.status === "authenticated" ? (
+            <ProfileImage mobileOpen={mobileOpen} session={session} />
+          ) : (
+            <li>
+              <Link
+                href="/auth"
+                className="bg-indigo-500 text-white px-3 py-2 rounded-md hover:bg-indigo-400 transition-all"
+              >
+                Login
+              </Link>
+            </li>
+          )}
         {menu.map(({ path: linkPath, show }) => (
           <li key={linkPath}>
             <Link
