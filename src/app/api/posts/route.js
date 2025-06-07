@@ -1,7 +1,7 @@
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
-import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
+import { getPostsCollection } from "@/lib/dbCollections/getPostsCollection";
 
 export async function POST(request) {
   try {
@@ -15,10 +15,7 @@ export async function POST(request) {
       );
     }
 
-    const client = await clientPromise;
-    const db = client.db();
-    const posts = db.collection("posts");
-
+    const posts = await getPostsCollection();
     const result = await posts.insertOne({
       title,
       body: content,
@@ -40,13 +37,11 @@ export async function POST(request) {
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  
+
   if (!session) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
-  const client = await clientPromise;
-  const db = client.db();
-  const posts = db.collection("posts");
+  const posts = await getPostsCollection();
   const result = await posts.find().toArray();
   return NextResponse.json(result);
 }
