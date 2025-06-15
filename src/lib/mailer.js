@@ -1,15 +1,16 @@
 // lib/mailer.js
 import nodemailer from "nodemailer";
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 export async function sendVerificationEmail(email, token) {
   const url = `${process.env.NEXTAUTH_URL}/auth/verify-email?token=${token}`;
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
 
   await transporter.sendMail({
     from: `"NextBack" <${process.env.EMAIL_USER}>`,
@@ -63,5 +64,22 @@ export async function sendVerificationEmail(email, token) {
 </body>
 </html>
 `,
+  });
+}
+
+export async function sendResetPasswordEmail(email, token) {
+  console.log(email);
+  const url = `${process.env.NEXTAUTH_URL}/auth/reset-password?token=${token}`;
+
+  await transporter.sendMail({
+    from: `"NextBack" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: "Reset Your Password",
+    html: `
+      <h2>Password Reset Request</h2>
+      <p>You requested to reset your password. Click below:</p>
+      <a href="${url}">${url}</a>
+      <p>This link will expire in 1 hour.</p>
+    `,
   });
 }
