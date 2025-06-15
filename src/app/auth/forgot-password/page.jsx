@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
           Send Reset Link
         </button>
-        {msg && <p className="text-sm text-gray-700 mt-2">{msg}</p>}
+        {msg && <p className="text-sm text-blue-600 mt-2">{msg}</p>}
       </form>
     </div>
   );

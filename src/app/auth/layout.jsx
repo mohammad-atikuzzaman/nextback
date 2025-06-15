@@ -1,7 +1,11 @@
+import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
 
-const Layout = ({ children }) => {
+const Layout = async ({ children }) => {
+  const session = await getServerSession()
+  session?.user && redirect('/')
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
       {/* Navigation */}
